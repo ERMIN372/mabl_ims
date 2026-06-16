@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PublicShell } from "@/components/layout/PublicShell";
+import { AppShell } from "@/components/layout/AppShell";
 import { Badge, Card, ProgressBar } from "@/components/ui/primitives";
 import { ButtonLink } from "@/components/ui/Button";
 import { CoverArt } from "@/components/ui/CoverArt";
@@ -32,7 +32,7 @@ export default function CoursePage({ params }: { params: { id: string } }) {
   if (!course) notFound();
 
   return (
-    <PublicShell>
+    <AppShell>
       {/* Обложка */}
       <section className="border-b border-oil-200">
         <div className="container-mabl grid gap-8 py-10 md:grid-cols-[1.4fr_1fr] md:py-14">
@@ -210,6 +210,6 @@ export default function CoursePage({ params }: { params: { id: string } }) {
           </Card>
         </aside>
       </div>
-    </PublicShell>
+    </AppShell>
   );
 }

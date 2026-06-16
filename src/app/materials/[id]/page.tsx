@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PublicShell } from "@/components/layout/PublicShell";
+import { AppShell } from "@/components/layout/AppShell";
 import { Badge } from "@/components/ui/primitives";
 import { CoverArt } from "@/components/ui/CoverArt";
 import { materials, getMaterial } from "@/data/materials";
@@ -15,7 +15,7 @@ export default function MaterialPage({ params }: { params: { id: string } }) {
   if (!material) notFound();
 
   return (
-    <PublicShell>
+    <AppShell>
       <article className="container-mabl max-w-3xl py-12 md:py-16">
         <Link href="/materials" className="text-sm text-ocean-700 hover:underline">
           ← Все материалы
@@ -58,6 +58,6 @@ export default function MaterialPage({ params }: { params: { id: string } }) {
           ))}
         </div>
       </article>
-    </PublicShell>
+    </AppShell>
   );
 }

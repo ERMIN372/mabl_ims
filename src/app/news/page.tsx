@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PublicShell } from "@/components/layout/PublicShell";
+import { AppShell } from "@/components/layout/AppShell";
 import { Section, SectionHeader, EmptyState } from "@/components/ui/primitives";
 import { NewsCard } from "@/components/cards";
 import { news } from "@/data/news";
@@ -20,7 +20,7 @@ export default function NewsPage() {
   const visible = news.filter((n) => cat === "Все" || n.category === cat);
 
   return (
-    <PublicShell>
+    <AppShell>
       <Section>
         <SectionHeader
           eyebrow="Журнал"
@@ -54,6 +54,6 @@ export default function NewsPage() {
           <EmptyState title="Новостей в этой категории пока нет" />
         )}
       </Section>
-    </PublicShell>
+    </AppShell>
   );
 }

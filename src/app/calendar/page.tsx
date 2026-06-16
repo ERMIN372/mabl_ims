@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PublicShell } from "@/components/layout/PublicShell";
+import { AppShell } from "@/components/layout/AppShell";
 import { Section, SectionHeader, EmptyState } from "@/components/ui/primitives";
 import { EventCard } from "@/components/cards";
 import { events } from "@/data/events";
@@ -35,7 +35,7 @@ export default function CalendarPage() {
   }, {});
 
   return (
-    <PublicShell>
+    <AppShell>
       <Section>
         <SectionHeader
           eyebrow="Расписание"
@@ -78,6 +78,6 @@ export default function CalendarPage() {
           <EmptyState title="Событий не найдено" />
         )}
       </Section>
-    </PublicShell>
+    </AppShell>
   );
 }

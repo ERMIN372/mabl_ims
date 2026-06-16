@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PublicShell } from "@/components/layout/PublicShell";
+import { AppShell } from "@/components/layout/AppShell";
 import { Section, SectionHeader, EmptyState } from "@/components/ui/primitives";
 import { MaterialCard } from "@/components/cards";
 import { materials } from "@/data/materials";
@@ -19,7 +19,7 @@ export default function MaterialsPage() {
   const visible = materials.filter((m) => filter === "all" || m.kind === filter);
 
   return (
-    <PublicShell>
+    <AppShell>
       <Section>
         <SectionHeader
           eyebrow="Библиотека"
@@ -53,6 +53,6 @@ export default function MaterialsPage() {
           <EmptyState title="Материалы не найдены" />
         )}
       </Section>
-    </PublicShell>
+    </AppShell>
   );
 }

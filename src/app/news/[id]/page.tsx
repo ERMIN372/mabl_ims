@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PublicShell } from "@/components/layout/PublicShell";
+import { AppShell } from "@/components/layout/AppShell";
 import { Badge } from "@/components/ui/primitives";
 import { news, getNews } from "@/data/news";
 import { formatDate } from "@/lib/format";
@@ -16,7 +16,7 @@ export default function NewsItemPage({ params }: { params: { id: string } }) {
   const more = news.filter((n) => n.id !== item.id).slice(0, 3);
 
   return (
-    <PublicShell>
+    <AppShell>
       <article className="container-mabl max-w-3xl py-12 md:py-16">
         <Link href="/news" className="text-sm text-ocean-700 hover:underline">
           ← Все новости
@@ -61,6 +61,6 @@ export default function NewsItemPage({ params }: { params: { id: string } }) {
           </div>
         </section>
       )}
-    </PublicShell>
+    </AppShell>
   );
 }

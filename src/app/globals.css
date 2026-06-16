@@ -34,9 +34,14 @@
 }
 
 :root {
-  /* Шрифтовой стек: фирменный TT Rationalist + системный fallback */
-  --font-rationalist: "TT Rationalist", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, sans-serif;
+  /* Шрифтовой стек.
+     1) "TT Rationalist" — реальный фирменный шрифт (подключается, когда файлы
+        добавлены в /public/fonts/ или установлены в системе);
+     2) var(--font-fallback-slab) — Roboto Slab, временный самохостинг-плейсхолдер
+        близкого слаб-серифного характера (см. layout.tsx);
+     3) системные слаб/сериф-шрифты и generic serif как последний резерв. */
+  --font-rationalist: "TT Rationalist", var(--font-fallback-slab), "Rockwell",
+    "Roboto Slab", Georgia, "Times New Roman", serif;
 
   /* Брендовые цвета (дублируют дизайн-токены Tailwind для произвольного CSS) */
   --color-oil: #212128;

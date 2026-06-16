@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PublicShell } from "@/components/layout/PublicShell";
+import { AppShell } from "@/components/layout/AppShell";
 import { Section, SectionHeader, EmptyState } from "@/components/ui/primitives";
 import { CourseCard } from "@/components/cards";
 import { courses } from "@/data/courses";
@@ -40,7 +40,7 @@ export default function CoursesPage() {
   const visible = courses.filter((c) => matches(c, filter));
 
   return (
-    <PublicShell>
+    <AppShell>
       <Section>
         <SectionHeader
           eyebrow="Каталог"
@@ -75,6 +75,6 @@ export default function CoursesPage() {
           <EmptyState title="Нет курсов по выбранному фильтру" />
         )}
       </Section>
-    </PublicShell>
+    </AppShell>
   );
 }

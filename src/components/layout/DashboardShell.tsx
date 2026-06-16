@@ -7,8 +7,12 @@ import { Logo } from "@/components/ui/Logo";
 import { useAuth } from "@/context/AuthContext";
 import { notifications } from "@/data/notifications";
 
-// Оболочка защищённой зоны (личный кабинет).
-// Включает боковую навигацию, верхнюю панель и guard авторизации.
+// Оболочка личного кабинета.
+//  - CabinetLayout — презентационная обёртка (боковое меню + верхняя панель).
+//    Используется всегда, когда пользователь авторизован, чтобы кабинет
+//    сохранялся при переходах по любым разделам (каталог, материалы и т.д.).
+//  - DashboardShell — CabinetLayout + guard авторизации (редирект на /login).
+//    Используется на строго защищённых страницах.
 
 const nav = [
   { href: "/dashboard", label: "Дашборд" },
@@ -22,23 +26,11 @@ const nav = [
   { href: "/notifications", label: "Уведомления" },
 ];
 
-export function DashboardShell({ children }: { children: React.ReactNode }) {
-  const { user, ready, logout } = useAuth();
+export function CabinetLayout({ children }: { children: React.ReactNode }) {
+  const { user, logout } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (ready && !user) router.replace("/login");
-  }, [ready, user, router]);
-
-  if (!ready || !user) {
-    return (
-      <div className="flex min-h-screen items-center justify-center text-sm text-oil-500">
-        Загрузка кабинета…
-      </div>
-    );
-  }
 
   const unread = notifications.filter((n) => !n.read).length;
 
@@ -86,7 +78,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               <span className="mt-1 block h-0.5 w-5 bg-oil-900" />
               <span className="mt-1 block h-0.5 w-5 bg-oil-900" />
             </button>
-            <Logo variant="horizontal" size={36} />
+            <Logo variant="horizontal" href="/dashboard" size={36} />
           </div>
           <div className="flex items-center gap-4">
             <Link
@@ -100,7 +92,9 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                 </span>
               )}
             </Link>
-            <span className="hidden text-sm text-oil-500 sm:inline">{user.name}</span>
+            <span className="hidden text-sm text-oil-500 sm:inline">
+              {user?.name}
+            </span>
             <button
               onClick={() => {
                 logout();
@@ -138,4 +132,24 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
       </div>
     </div>
   );
+}
+
+// Защищённая оболочка с guard'ом: если не авторизован — редирект на /login.
+export function DashboardShell({ children }: { children: React.ReactNode }) {
+  const { user, ready } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (ready && !user) router.replace("/login");
+  }, [ready, user, router]);
+
+  if (!ready || !user) {
+    return (
+      <div className="flex min-h-screen items-center justify-center text-sm text-oil-500">
+        Загрузка кабинета…
+      </div>
+    );
+  }
+
+  return <CabinetLayout>{children}</CabinetLayout>;
 }
