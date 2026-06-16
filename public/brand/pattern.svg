@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220">
+  <!--
+    Фирменный паттерн МАБЛ (тонкая декоративная интерпретация).
+    Ромбическая решётка с мотивами герба: книга и ракушка.
+    Линии океанового цвета с низкой непрозрачностью — не перегружает интерфейс.
+  -->
+  <defs>
+    <g id="shell">
+      <path d="M0,-7 C5,-7 8,-3 8,2 C8,5 4,7 0,7 C-4,7 -8,5 -8,2 C-8,-3 -5,-7 0,-7 Z"
+            fill="none" stroke="#3552af" stroke-width="1"/>
+      <path d="M0,7 L-3,-4 M0,7 L0,-5 M0,7 L3,-4" fill="none" stroke="#3552af" stroke-width="0.8"/>
+    </g>
+    <g id="book">
+      <path d="M-7,-4 L0,-2 L7,-4 L7,5 L0,3 L-7,5 Z" fill="none" stroke="#3552af" stroke-width="1"/>
+      <path d="M0,-2 L0,3" stroke="#3552af" stroke-width="0.8"/>
+    </g>
+  </defs>
+  <g opacity="0.5">
+    <!-- ромбическая сетка -->
+    <path d="M110,0 L220,110 L110,220 L0,110 Z" fill="none" stroke="#3552af" stroke-width="0.8"/>
+    <path d="M110,0 L165,55 M110,220 L165,165 M0,110 L55,55 M0,110 L55,165
+             M220,110 L165,55 M220,110 L165,165" fill="none" stroke="#3552af" stroke-width="0.6" opacity="0.6"/>
+    <use href="#book" x="110" y="55"/>
+    <use href="#book" x="110" y="165"/>
+    <use href="#shell" x="55" y="110"/>
+    <use href="#shell" x="165" y="110"/>
+    <use href="#shell" x="110" y="110"/>
+    <use href="#book" x="0" y="0"/>
+    <use href="#book" x="220" y="0"/>
+    <use href="#book" x="0" y="220"/>
+    <use href="#book" x="220" y="220"/>
+  </g>
+</svg>
