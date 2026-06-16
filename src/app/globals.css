@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================================
+   TT Rationalist — фирменный шрифт МАБЛ.
+   TODO: положить файлы шрифта в /public/fonts/ (см. public/fonts/README.md).
+   Пока файлов нет — `local()` не находит шрифт и срабатывает системный
+   fallback из --font-rationalist. Раскомментируйте src при добавлении файлов.
+   ========================================================================= */
+@font-face {
+  font-family: "TT Rationalist";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: local("TT Rationalist Light")
+    /* , url("/fonts/TTRationalist-Light.woff2") format("woff2") */;
+}
+@font-face {
+  font-family: "TT Rationalist";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: local("TT Rationalist")
+    /* , url("/fonts/TTRationalist-Regular.woff2") format("woff2") */;
+}
+@font-face {
+  font-family: "TT Rationalist";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: local("TT Rationalist DemiBold")
+    /* , url("/fonts/TTRationalist-DemiBold.woff2") format("woff2") */;
+}
+
+:root {
+  /* Шрифтовой стек: фирменный TT Rationalist + системный fallback */
+  --font-rationalist: "TT Rationalist", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+
+  /* Брендовые цвета (дублируют дизайн-токены Tailwind для произвольного CSS) */
+  --color-oil: #212128;
+  --color-ocean: #3552af;
+  --color-wisdom: #ffffff;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    font-family: var(--font-rationalist);
+    color: #212128;
+    background-color: #ffffff;
+  }
+  /* Заголовки — увеличенный letter-spacing, академическая строгость */
+  h1, h2, h3 {
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer components {
+  /* Контейнер контента со строгой сеткой */
+  .container-mabl {
+    @apply mx-auto w-full max-w-content px-6 md:px-8;
+  }
+
+  /* Надзаголовок / эйлоу — капс с большим трекингом */
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-heading text-ocean-700;
+  }
+
+  /* Тонкая разделительная линия */
+  .hairline {
+    @apply border-oil-200;
+  }
+}
+
+/* Фирменный паттерн как тонкий декоративный фон (см. /public/brand/pattern.svg) */
+.pattern-bg {
+  background-image: url("/brand/pattern.svg");
+  background-repeat: repeat;
+  background-size: 220px;
+}
